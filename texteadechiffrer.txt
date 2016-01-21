@@ -1,0 +1,52 @@
+U2FsdGVkX1+SEmziItUv8JPjyOjOmaG/rGL+Vv1mImnvbgAYQFIAD8nXATjZx2W8
+EtKiPWDg6X0IS1hBSn2+jE1IIT7Cai+BCcHmleRp2qVV4eHMzGKS52JnpNwM5h72
+60bEqxX+m0NxMFTtD7SKORy7tTBWwnJl5xBkJZe+AqnSuurhFHwa6f87rnLyzxSI
+4ahqBU15W1ohooUCfOB23nJ9mYS1ip/w9k57Mif3IUeqdQSFXLd6mmjmrEpvd4dY
+Z7e2JZwZiifKZjJN7CyQs68DCsjET7ZlEUPdgnUH8vRQAXy0LDMCkyEoxjwPme2L
+uiwfMQDDBFyMhWf28tHrF0nDo9OnTNK3JZepjP5f30SY7dAWfBBNf9ZeGHPGu7XT
+u9RpA2Bqm/ruOjFTYBl6t7U8kHcip7EmF9x/AcXogC4pg9KJ+P+d5atzyA/jhJjc
+2zaYvSGzD/ur4yJfPAz+SIZ3QxhouzdQyxcqnZaU1lmaYXo9l65nUs8Gb1TppsdL
+fmYa2H3kO9NRDale2IC/he4Pew2uoIsNJUzDrtD9OMy9DVgOpoupYe3dA8L37HgG
+zB5MVbo/mv/PjvP4E/iXelVkG80t3PKubfo1ULXQPh/yx9e9L204G2tleKMDiayR
+x/gpshildh5N0I1l0lNxwE4jTcVKc47luf+dkce5ZdVlW3wr3emh4uey596v0IE8
+YJJeyMY4PKnAUQE4oxq6XayWWQbKxfmNYg564eWgrYj+Q4JMN2EoyiupiY5iPQyq
+Zru5h2ueRutEDlWHjF7TLfiZMMY72WEZSjoFMAZSrlealQJAb2aMJqiKhdQMtaow
+O9z7KeW5IcQs8JjMA7SyXAsqtpXTdtlQxjq5N2G3f1UjvDyOUZgveggA/pIFtw6f
+yQUN4sy0ic21/iW8a3mVkSm+N5If0mxo2il8vj9yzkfwNeBqNg8VEfSUxtVja+n+
+/vcxVLbuTRwDwjjR1kAV9JrsZZzrvjDYAYAVWIQCcwnc5IsB92/A2WCfBJ6jAsmm
+D4nhaNEduYKZj3WLfYeZgPXFn3fFpHOHT1t/l0hyje64KFCVBJdMpWMt6i5HbgZr
+gHV4JRACdSL3opDlo+wRiPi3FIyVswJmveIl7NCB7vbDfp2HBSXBSP0+lfw83jo4
+ov+Ny7+ioB6Q2hZIUlZ4SQe/ij+JyyPo6onnbVeRHq90qD1YQOzx2ryD8O41JAx2
+CYgk3CKKUhGgYcKvnRPANsuZ7kK3Hb/EhHvDKp9AzX8vV9ak4GqIr/JP6/8L5Fsu
+JnJq/LJ+1y3j/aslRL7zxIhFy9PYacuJAzhtcuoNsKaKySVHWWcQPYG8KAPBHryO
+iCDGT0X4v6zDjybc2fCjF0D07a35AZhqWvYEKLtF6NVEi6nWf8WvtN3iOGXMMcqG
+94IVxQmSi/fvr6NDP1QsnNrOmEm+Nxxz50Ft+f4tPj4=
+
+login       : estamm
+password    : UPWxrX3FHq
+
+      /bin/crypto_helpdesk/ticket/14112
+            Affiche le ticket n°14112
+      /bin/crypto_helpdesk/ticket/1377/attachment/sensitive-data
+  	        Affiche la pièce jointe nommée "sensitive-data" du ticket 1377
+        /bin/crypto_helpdesk/ticket/1337/close
+            Réclame la fermeture du ticket 1377.
+	        REMARQUE : il faut envoyer un argument confirm=True (en POST).
+
+Vous devez ensuite envoyer une requête POST à la même adresse, accompagnée de
+deux arguments : 
+
+    + "user"     = votre <username>
+    + "response" = le chiffré de <plaintext> (cf. ci-dessous) avec openssl,
+                   algorithme AES-128-CBC, et mot de passe <password> :
+
+          <plaintext> = "<username>-<challenge>"
+
+
+{'challenge': '88fa59dbdc734dea9396fcff37f83a24'}
+
+resultat = U2FsdGVkX18Esl77e7Jav1B0z7lyP/X3uSuj5jySTaZMna6vuzJ6HNUJt7c8TUXv
+ctwihuMtgOLzhmlqV5nzLw==
+
+==> mieux faut utiliser ipython
+

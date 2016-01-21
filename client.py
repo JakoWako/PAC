@@ -2,7 +2,7 @@ import json
 import urllib.request
 import urllib.parse
 import urllib.error
-
+from openssl import *
 # Ceci est du code Python v3.x (la version >= 3.4 est conseillÃ©e pour une
 # compatibilitÃ© optimale).
 # --- les admins
@@ -176,12 +176,13 @@ class Connection:
         request.add_header('Content-type', content_type)
         return self._query(url, request, data)
 c = Connection("http://pac.fil.cool/uglix")
-global myuser
-myuser = ""
 def doc(url):
 	print(c.get('/doc/'+url))
-def connect(user,password):
-	myuser=user
-	c.post('/bin/login',user=user,password=password)
+def connect():
+	c.post('/bin/login',user='estamm',password='UPWxrX3FHq')
 def cat(lien):
 	c.get('/home/'+myuser+'/'+lien)
+def connectCHAP(user,response):
+c.post('/bin/login/CHAP',user='estamm',response=response)
+
+
