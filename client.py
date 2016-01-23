@@ -179,10 +179,13 @@ c = Connection("http://pac.fil.cool/uglix")
 def doc(url):
 	print(c.get('/doc/'+url))
 def connect():
-	c.post('/bin/login',user='estamm',password='UPWxrX3FHq')
+	print(c.post('/bin/login',user='estamm',password='UPWxrX3FHq'))
 def cat(lien):
 	c.get('/home/'+myuser+'/'+lien)
-def connectCHAP(user,response):
-c.post('/bin/login/CHAP',user='estamm',response=response)
+def connectCHAP():
+	mychallenge = c.get('/bin/login/CHAP')
+	print(mychallenge)
+	plaintext = 'estamm-'+mychallenge['challenge']
+	c.post('/bin/login/CHAP',user='estamm',response=encrypt(plaintext,'UPWxrX3FHq','aes-128-cbc'))
 
 

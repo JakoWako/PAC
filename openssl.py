@@ -20,7 +20,7 @@ def encrypt(plaintext, passphrase, cipher='aes-128-cbc'):
     """
     # prépare les arguments à envoyer à openssl
     pass_arg = 'pass:"{0}"'.format(passphrase)
-    args = ['openssl', 'enc', '-' + cipher, '-base64', '-pass', 'UPWxrX3FHq']
+    args = ['openssl', 'enc', '-' + cipher, '-base64', '-pass', pass_arg]
     
     # si le message clair est une chaine unicode, on est obligé de
     # l'encoder en bytes() pour pouvoir l'envoyer dans le pipeline vers 
