@@ -180,12 +180,36 @@ def doc(url):
 	print(c.get('/doc/'+url))
 def connect():
 	print(c.post('/bin/login',user='estamm',password='UPWxrX3FHq'))
+def inbox():
+	print(c.get('/home/estamm/INBOX'))
+def message(nb):
+	print(c.get('/home/estamm/INBOX/'+nb))
 def cat(lien):
-	c.get('/home/'+myuser+'/'+lien)
+	c.get('/home/estamm/'+lien)
 def connectCHAP():
 	mychallenge = c.get('/bin/login/CHAP')
 	print(mychallenge)
 	plaintext = 'estamm-'+mychallenge['challenge']
 	c.post('/bin/login/CHAP',user='estamm',response=encrypt(plaintext,'UPWxrX3FHq','aes-128-cbc'))
-
-
+def sendmail(dest,subject,content):
+	print(c.post('/bin/sendmail',to=dest,subject=subject,content=content))
+def tickets():
+	print(c.get('/bin/crypto_helpdesk'))
+def show_ticket(nb):
+	print(c.get('/bin/crypto_helpdesk/ticket/'+nb))
+def closeticket(nb):
+	print(c.post('/bin/crypto_helpdesk/ticket/'+nb+'/close',confirm=True))
+def answerticket():
+	fileattach = c.get('/bin/crypto_helpdesk/ticket/59/attachment/file')
+	result = encrypt(fileattach,'GjN&+GD*gZ','aes-128-cbc')
+	print(result)
+	sendmail('bmohr','toto',result)
+def answerticket60():
+	f = open('dechiffre2.txt','r')
+	x = f.read()
+	sendmail('farrah04','ticket60',x)
+def answerticket90():
+	attachment = c.get('/bin/crypto_helpdesk/ticket/90/attachment/message')
+	publickey = print(c.get('/bin/crypto_helpdesk/ticket/90/attachment/public-key'))
+	result = encrypt(attachment,publickey,'rsa')
+	sendmail('scottie70','ticket90',result)
