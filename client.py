@@ -211,5 +211,6 @@ def answerticket60():
 def answerticket90():
 	attachment = c.get('/bin/crypto_helpdesk/ticket/90/attachment/message')
 	publickey = print(c.get('/bin/crypto_helpdesk/ticket/90/attachment/public-key'))
-	result = encrypt(attachment,publickey,'rsa')
-	sendmail('scottie70','ticket90',result)
+	"""result = encrypt(attachment,publickey,'rsa')"""
+	f = open('resultat.ssl','rb')
+	sendmail('scottie70','ticket90',f.read().decode())
