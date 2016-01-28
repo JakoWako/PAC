@@ -220,6 +220,23 @@ def answerticket91():
 	write = f.write(publickey)
 	chaine = "informations sensibles"
 	f.close()
-	adresse = print(c.get('/bin/crypto_helpdesk/ticket/91/attachment/contact'))
+	adresse = c.get('/bin/crypto_helpdesk/ticket/91/attachment/contact')
 	x = encryptRSA(chaine,"ticket91.txt")
 	sendmail(adresse,"ticket91",x)
+def answerticket912():
+	mail = c.get('/home/estamm/INBOX/3090/body')
+	y = open("ticket91.txt",'w')
+	write = y.write(mail)
+	y.close()
+	'''f = open("privatekey.ssl",'r')
+	x = decryptRSA(mail,f.read())'''
+def dlsoundtrack():
+	soundtrack = c.get('/home/estamm/soundtrack_1.s3m')
+	f = open('soundtrack_1.s3m','w')
+	f.write((b64encode(soundtrack).decode()))
+	f.close()
+	print('OK')
+def createpublickey():
+	f = open("mypublickey.ssl",'r')
+	c.put('/home/estamm/.pk.email.openssl',f.read())
+	f.close()
