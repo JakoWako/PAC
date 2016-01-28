@@ -3,6 +3,7 @@ import urllib.request
 import urllib.parse
 import urllib.error
 from openssl import *
+from base64 import b64decode, b64encode
 # Ceci est du code Python v3.x (la version >= 3.4 est conseillÃ©e pour une
 # compatibilitÃ© optimale).
 # --- les admins
@@ -209,8 +210,16 @@ def answerticket60():
 	x = f.read()
 	sendmail('farrah04','ticket60',x)
 def answerticket90():
-	attachment = c.get('/bin/crypto_helpdesk/ticket/90/attachment/message')
-	publickey = print(c.get('/bin/crypto_helpdesk/ticket/90/attachment/public-key'))
-	"""result = encrypt(attachment,publickey,'rsa')"""
-	f = open('resultat.ssl','rb')
-	sendmail('scottie70','ticket90',f.read().decode())
+	'''attachment = c.get('/bin/crypto_helpdesk/ticket/90/attachment/message')'''
+	'''publickey = print(c.get('/bin/crypto_helpdesk/ticket/90/attachment/public-key'))'''
+	f = open('resultat2.txt','rb')
+	sendmail('scottie70','ticket90',(b64encode(f.read())).decode())
+def answerticket91():
+	publickey =c.get('/bin/finger/icey27/pk')
+	f = open('ticket91.txt','w')
+	write = f.write(publickey)
+	chaine = "informations sensibles"
+	f.close()
+	adresse = print(c.get('/bin/crypto_helpdesk/ticket/91/attachment/contact'))
+	x = encryptRSA(chaine,"ticket91.txt")
+	sendmail(adresse,"ticket91",x)
