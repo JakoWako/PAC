@@ -185,8 +185,6 @@ def inbox():
 	print(c.get('/home/estamm/INBOX'))
 def message(nb):
 	print(c.get('/home/estamm/INBOX/'+nb))
-def getmessage(nb):
-	return c.get('/home/estamm/INBOX/'+nb+'/body')
 def cat(lien):
 	c.get('/home/estamm/'+lien)
 def connectCHAP():
@@ -200,8 +198,6 @@ def tickets():
 	print(c.get('/bin/crypto_helpdesk'))
 def show_ticket(nb):
 	print(c.get('/bin/crypto_helpdesk/ticket/'+nb))
-def ticket_attachment(nb,name):
-	return c.get('/bin/crypto_helpdesk/ticket/'+nb+'/attachment/'+name)
 def closeticket(nb):
 	print(c.post('/bin/crypto_helpdesk/ticket/'+nb+'/close',confirm=True))
 def answerticket():
@@ -229,9 +225,11 @@ def answerticket91():
 	sendmail(adresse,"ticket91",x)
 def answerticket912():
 	mail = c.get('/home/estamm/INBOX/3090/body')
-	'''f = open("privatekey.ssl",'r')'''
-	x = decryptRSA(b64decode(mail))
-	sendmail('donat50','ticket91',x)
+	y = open("ticket91.txt",'w')
+	write = y.write(mail)
+	y.close()
+	'''f = open("privatekey.ssl",'r')
+	x = decryptRSA(mail,f.read())'''
 def dlsoundtrack():
 	soundtrack = c.get('/home/estamm/soundtrack_1.s3m')
 	f = open('soundtrack_1.s3m','w')
@@ -242,22 +240,27 @@ def createpublickey():
 	f = open("mypublickey.ssl",'r')
 	c.put('/home/estamm/.pk.email.openssl',f.read())
 	f.close()
-def getpublickey(name):
-	return c.get('/bin/finger/'+name+'/pk')
-def answerticket92():
-	hiscontent = ticket_attachment('92','reciprocity')
-	hisid = ticket_attachment('92','contact')
-	enccontent = encrypt(hiscontent,'hypersecret42keyofthed34d')
-	hispk = getpublickey('epadberg')
-	f = open("pk92",'w')
-	f.write(hispk)
-	f.close()
-	result = encryptRSA('hypersecret42keyofthed34d','pk92')
-	dico = {'skey':result,'document':enccontent}
-	sendmail(hisid,'ticket92',dico)
-def signercontrattravail():
-	contrat = getmessage('3223')
-	f = open("privatekey.ssl",'r') 
-	resultat = sign('privatekey.ssl',contrat)
-	sendmail('droberts','contrat',resultat)
-	
+def showpolice():
+	print(c.get('/bin/police_hq'))
+def showpoliceticket(nb):
+	print(c.get('/bin/police_hq/ticket/'+nb))
+def answerticket250():
+	docA = b64decode(c.get('/bin/police_hq/ticket/250/attachment/exhibit-A'))
+	docB = b64decode(c.get('/bin/police_hq/ticket/250/attachment/exhibit-B'))
+	myarray = bytearray()
+	for i,j in zip(docA,docB):
+		myarray.append(i ^ j)
+	rep = bytearray()
+	for ch in myarray:
+		rep.append((ch ^ ord('0')))
+	rep2 = bytearray()
+	'''f = open("textebizarre.txt",'w')
+	f.write("".join(map(chr,rep)))
+	f.write("FIN PREMIER TEXTE")'''
+	'''print(rep)'''
+	for ch in myarray:
+		rep2.append((ch ^ ord('1')))
+	'''print(rep2)'''
+	''''f.write("".join(map(chr,rep2)))
+	f.close()'''
+	sendmail('jhoeger','ticket250',"s'entête")
